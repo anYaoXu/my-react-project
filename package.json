@@ -34,5 +34,9 @@
   "description": "my first react project",
   "main": "index.js",
   "author": "anYaoXu <3131895796@qq.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "babel-plugin-import": "^1.12.0",
+    "mockjs": "^1.0.1-beta3"
+  }
 }
