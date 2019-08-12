@@ -66,7 +66,10 @@ service.interceptors.response.use(
 )
 
     function getAxios(url, params = {}){
+        debugger;
+        // axios.get
         service.get(url,{}).then(response => {
+            debugger;
             return response;
         }).catch(error => {
             return error;
