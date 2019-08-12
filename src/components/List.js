@@ -19,7 +19,7 @@ class List extends Component {
     componentDidMount(){
         const a = axiosService.getAxios('http://www.phonegap100.com/appapi.php?a=getPortalList&catid=20',{
         })
-        console.log(a);
+        // console.log(a);
         // AxiosService.co();
     }
 
