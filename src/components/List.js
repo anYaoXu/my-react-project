@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Mock from 'mockjs';
+import axiosService from '../core/http';
 
 class List extends Component {
     constructor(props) {
@@ -15,6 +16,16 @@ class List extends Component {
         console.log(list);
         console.log(JSON.stringify(list, null, 5));
     }
+    componentDidMount(){
+        const a = axiosService.postAxios('http://192.168.100.149:8060/uk-bsc/v1/searchbilllists/',{
+            "method": "get",
+            "req_type": "10",
+            "data": {"type":1,"pagenumber":1,"pagesize":10}
+        })
+        console.log(a);
+        // AxiosService.co();
+    }
+
     render() {
         return (
             <p>list</p>
