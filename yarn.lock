@@ -7691,7 +7691,7 @@ react-lifecycles-compat@^3.0.2, react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.npm.taobao.org/react-lifecycles-compat/download/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
 
-react-scripts@3.1.0:
+react-scripts@^3.1.0:
   version "3.1.0"
   resolved "https://registry.npm.taobao.org/react-scripts/download/react-scripts-3.1.0.tgz#f4c4133072908e709a23864ccb49076ccbeb766b"
   dependencies:
