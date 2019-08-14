@@ -7,6 +7,10 @@ const MainRouters = [
         path:'/main',
         component:Home,
         exact: true
+    },{
+        path:'/main/home',
+        component:Home,
+        exact: true
     },
     {
         path:'/main/baseC',

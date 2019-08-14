@@ -9,30 +9,18 @@ function App() {
 
   return (
     <div id="wrap">
-      {/* <Button type="primary">按钮</Button> */}
+      <Button type="primary">按钮</Button>
       <Router>
         <Switch>
           {
             Routers.map((route, key) => {
-              if (route.exact) {
-                return (
-                  <Route
-                    key={key}
-                    exact
-                    path={route.path}
-                    component={route.component}
-                  />
-                )
-              } else {
-                return (
-                  <Route key={key} path={route.path}
-                  component={route.component} />
-                )
-
-              }
+              return (
+                <Route key={key} path={route.path}
+                component={route.component} />
+              )
             })
           }
-          {/* <Redirect from="/*" to="/login" /> */}
+          <Redirect from="/*" to="/login" />
         </Switch>
       </Router>
     </div>
