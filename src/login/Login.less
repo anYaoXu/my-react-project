@@ -1,0 +1,95 @@
+#loginWrap{
+    width: 100%;
+    height: 100%;
+    .header, .footer{
+        width: 100%;
+        height: 60px;
+        line-height: 60px;
+        background-color: #282f39;
+        color: #fff;
+        text-align: center;
+    }
+    .content{
+        display: flex;
+        display: -webkit-flex;
+        width: 100%;
+        height: e("calc(100% - 120px)");
+        flex-direction: row;
+        padding: 50px 250px;
+        box-sizing:border-box;
+        background-color: #fff;
+        .left{
+            flex: 1 1 auto;
+            border: 1px solid red;
+            margin-right: 100px;
+        }
+        .right{
+            width: 370px;
+            padding: 0 20px;
+            display: flex;
+            display: -webkit-flex;
+            align-items:center;/*垂直居中*/
+            justify-content: center;/*水平居中*/
+            .form-header{
+                width: 100%;
+                height: 45px;
+                line-height: 45px;
+                margin-bottom: 35px;
+                &>div{
+                    width: 50%;
+                    height: 100%;
+                    float: left;
+                    text-align: center;
+                    background-color: #f7f7f7;
+                    cursor: pointer;
+                    &.active{
+                        color: #f47983;
+                        background-color: #fff;
+                        border-top: 5px salmon solid;
+                    }
+                }
+                .login-left.active{                    
+                    border-radius: 4px 0 0 0;
+                }
+                .login-right.active{                    
+                    border-radius: 0 4px 0 0;
+                }
+            }
+            .form-box{
+                width: 100%;
+                height: 350px;
+                border: 1px solid #e8e8e8;
+                border-radius: 4px;
+                background-color: #fff;
+                box-shadow: 0 3px 4px 0 rgba(0,0,0,.06);
+                .ant-form{
+                    padding:0 30px;
+                }
+            }
+            .ant-form-item{
+                margin-bottom: 10px;
+            }
+            .ant-input{
+                border:none;
+                border-bottom: 1px solid #d9d9d9;
+                border-radius: 0;
+
+            }
+            .ant-input:focus{
+                box-shadow:none;
+            }
+            .ant-input-affix-wrapper .ant-input-prefix{
+                left: 5px;
+            }
+            a{
+                color:#f47983;
+            }
+            .login-form-forgot {
+                float: right;
+              }
+            .login-form-button {
+                width: 100%;
+            }
+        }
+    }
+}

@@ -1,15 +1,13 @@
 import React from 'react';
-// import Button from 'antd/es/button';
-import { Button } from 'antd';
-import { BrowserRouter as Router, Route, Link, Redirect, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route,  Redirect, Switch } from "react-router-dom";
 import Routers from './Router';
-import baseConfig from './main/baseConfig/baseConfig'
+import './App.css';
 
 function App() {
 
   return (
     <div id="wrap">
-      <Button type="primary">按钮</Button>
+      {/* <Button type="primary">按钮</Button> */}
       <Router>
         <Switch>
           {
@@ -20,7 +18,7 @@ function App() {
               )
             })
           }
-          <Redirect from="/*" to="/login" />
+          <Redirect from="/" to="/login" />
         </Switch>
       </Router>
     </div>

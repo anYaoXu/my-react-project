@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch } from "react-router-dom";
 import MainRouters from './MainRoute';
-import baseConfig from './baseConfig/baseConfig';
 
 class Main extends Component {
     constructor(props) {
