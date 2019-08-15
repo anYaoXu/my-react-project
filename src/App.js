@@ -1,18 +1,26 @@
 import React from 'react';
-// import Button from 'antd/es/button';
-import { Button } from 'antd';
+import { BrowserRouter as Router, Route,  Redirect, Switch } from "react-router-dom";
+import Routers from './Router';
 import './App.css';
-import './test.less';
-import List from './components/List';
 
 function App() {
-  
+
   return (
-    <div className="App test">
-   66666
-        <Button type="primary">jjjj</Button>
-        
-        <List></List>     
+    <div id="wrap">
+      {/* <Button type="primary">按钮</Button> */}
+      <Router>
+        <Switch>
+          {
+            Routers.map((route, key) => {
+              return (
+                <Route key={key} path={route.path}
+                component={route.component} />
+              )
+            })
+          }
+          <Redirect from="/" to="/login" />
+        </Switch>
+      </Router>
     </div>
   );
 }
