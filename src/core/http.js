@@ -1,5 +1,6 @@
 // import React, { Component } from 'react';
 import axios from 'axios';
+import {message} from 'antd';
 
 // 创建axios实例
 const service = axios.create({
@@ -16,7 +17,6 @@ service.interceptors.request.use(
         // if(store.getter.token){
         //     config.header['token'] = getToken()
         // }
-        config.header['token'] = '1c0717ac45534b6b568eba5cfaf10b06'
         config.headers['Content-Type'] = 'application/json;charset=UTF-8';
         return config;
     }, (error) => {
@@ -29,20 +29,21 @@ service.interceptors.response.use(
     response => {
         // 判断服务器是否请求成功
         const res = response.data;
-        if (res.success) {
-            return res;
+        if (response.code) {
+            return response.data;
         }else{
-            console.info("错误xxxx");
+            message.error(res.msg);
         }
     },
     error => {
+        debugger;
         if (error.response.status) {
             switch (error.response.status) {
                 case 401:
                     console.log('未登录，跳转登录');
                     break;
                 case 404:
-                    console.info("404");
+                    message.error('访问接口不存在');
                     break;
                 case 403:
                     console.log('登录过期，跳转登录');
@@ -62,21 +63,39 @@ service.interceptors.response.use(
             return Promise.reject(error);
         }
 
+    })
+    function getCommonParams(params){
+        const loginData = getLoginInfo();
+        return {
+            data: params,
+            req_type: '10',
+            token: params.token || (loginData ? loginData.token : ''),
+            bodyparams: '',
+            method:'post',
+            action: params.action || ''
+          };
     }
-)
-
+    function getLoginInfo(){
+        // return {
+        //     username: $.cookie('username'),
+        //     userid: $.cookie('userid'),
+        //     loginname: $.cookie('loginname'),
+        //     mobile: $.cookie('mobile'),
+        //     token: $.cookie('token'),
+        //     headimg: $.cookie('headimg'),
+        //   };
+        return {}
+    }
     function getAxios(url, params = {}){
-        debugger;
-        // axios.get
         service.get(url,{}).then(response => {
-            debugger;
             return response;
         }).catch(error => {
             return error;
         })
     }
     function postAxios(url, params = {}){
-        service.post(url,params).then(response => {
+        const queryData = getCommonParams(params);
+        service.post(url,queryData).then(response => {;
             return response;
         }).catch(error => {
             return error;
