@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
 import './Login.less';
 import axiosService from '../core/http';
-import UtilService from '../core/util.service.js';
+import UtilService from '../core/util.service.ts';
 import $ from 'jquery';
-import cookie from 'react-cookies';
+import cookie from 'jquery.cookie';
+// import cookie from 'react-cookies';
 
 
 class Login extends Component {
@@ -22,7 +23,12 @@ class Login extends Component {
         // return;
         // $.cookie('username','')
         // console.log($.cookie('username',''));
+        // console.log(cookie);
+        // $.cookie('username','1234');
+        $.cookie('username','12345');
+        console.log($.cookie('username'));
         event.preventDefault();
+        // return;
         const param = {
             loginname:this.state.userName,
             password:this.state.password,
@@ -38,7 +44,7 @@ class Login extends Component {
                 });
             }
         }).catch(err=>{
-            message.error(err.msg)
+            message.error(err.message)
         })
     }
     showLoginBox = (type) => {

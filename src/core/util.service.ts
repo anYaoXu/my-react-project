@@ -1,5 +1,5 @@
-import cookie from 'react-cookies';
-
+// import cookie from 'react-cookies';
+import $ from 'jquery';
 
 const UtilService = {
     getLoginInfo() {
@@ -10,7 +10,7 @@ const UtilService = {
             mobile: $.cookie('mobile'),
             token: $.cookie('token'),
             headimg: $.cookie('headimg'),
-        }
+        }   
     },
     deleteLoginInfo() {
         $.cookie('username', '');

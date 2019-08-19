@@ -6,7 +6,7 @@ import UtilService from './util.service';
 // 创建axios实例
 const service = axios.create({
     baseURL: '',
-    timeout: 5000,
+    timeout: 50000,
     withCredentials: true, // 跨域携带cookie
     xsrfCookieName: 'xsrf-token' //当创建实例的时候配置默认配置
 });
@@ -35,7 +35,7 @@ service.interceptors.response.use(
         }
     },
     error => {
-        if (error.response.status) {
+        if (error.response && error.response.status) {
             switch (error.response.status) {
                 case 401:
                     console.log('未登录，跳转登录');
