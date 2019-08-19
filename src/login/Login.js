@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
 import './Login.less';
 import axiosService from '../core/http';
+import UtilService from '../core/util.service.js';
+import $ from 'jquery';
+import cookie from 'react-cookies';
 
 
 class Login extends Component {
@@ -15,19 +18,28 @@ class Login extends Component {
         // this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleSubmit = (event) => {
+        // console.log('123456',$('.content'));
+        // return;
+        // $.cookie('username','')
+        // console.log($.cookie('username',''));
         event.preventDefault();
-        // "loginname":"test-admin","password":"123456","logintype":1,"countrycode":"+86 中国大陆"
-        // console.log(this.state.userName, this.state.password);
         const param = {
             loginname:this.state.userName,
             password:this.state.password,
             logintype: 1,
             countrycode:'+86 中国大陆'
         }
-        const url='http://192.168.100.149:8060/uk-bsc/v1/login/ss';
-        const a = axiosService.postAxios(url, param);
-        console.log(a);
-        // this.props.history.push('/main');
+        const url='http://192.168.100.149:8060/uk-bsc/v1/login';
+        axiosService.postAxios(url, param).then((res)=>{
+            if(res.code === 200){
+                UtilService.saveLoginInfo({},()=>{
+                    console.log('callback');
+                    this.props.history.push('/main');
+                });
+            }
+        }).catch(err=>{
+            message.error(err.msg)
+        })
     }
     showLoginBox = (type) => {
         console.log(type)
@@ -48,7 +60,7 @@ class Login extends Component {
     render() {
         const type = this.state.loginType;
         let lognBox;
-        if (this.state.loginType === 2) {
+        if (type === 2) {
             lognBox = (
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Item>
