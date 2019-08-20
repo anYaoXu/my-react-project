@@ -90,7 +90,7 @@ service.interceptors.response.use(
             service.post(url,queryData).then(res => {
                 resolve(res.data);
             }).catch(err => {
-                reject(err);
+                reject(err.data);
             })
         })
     }

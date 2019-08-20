@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
 import './Login.less';
 import axiosService from '../core/http';
-import UtilService from '../core/util.service.ts';
+import UtilService from '../core/util.service';
 import $ from 'jquery';
 import cookie from 'jquery.cookie';
 // import cookie from 'react-cookies';
@@ -38,13 +38,15 @@ class Login extends Component {
         const url='http://192.168.100.149:8060/uk-bsc/v1/login';
         axiosService.postAxios(url, param).then((res)=>{
             if(res.code === 200){
-                UtilService.saveLoginInfo({},()=>{
+                UtilService.saveLoginInfo(res.data.user,()=>{
                     console.log('callback');
                     this.props.history.push('/main');
                 });
+            }else{
+                console.log('code != 200')
             }
         }).catch(err=>{
-            message.error(err.message)
+            message.error(err.msg)
         })
     }
     showLoginBox = (type) => {

@@ -23,12 +23,13 @@ const UtilService = {
     saveLoginInfo(data:any, callback?:any) {
         this.deleteLoginInfo();
         this.getToday((time:any)=>{
-            const cookieConfig = { expires: new Date(time + 60 * 1000)};
-            this.setLoginInfoOfCookie(data.user,cookieConfig);
+            const cookieConfig = { expires: new Date(Date.now() + 60 * 1000)};
+            this.setLoginInfoOfCookie(data,cookieConfig);
+            if (callback) {
+                callback();
+            }
         })
-        if (callback) {
-            callback();
-        }
+        
     },
     setLoginInfoOfCookie(user:any,cookieConfig?:any){
         if(cookieConfig){
