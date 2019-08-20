@@ -12,10 +12,11 @@ class Main extends Component {
     render() {
         // const config = {...Routers, ...MainRouters};
         // const config = Object.assign({},Routers,MainRouters);
-        const config = [ ...MainRouters];
+        // const config = [ ...MainRouters];
         return (
             <div>
                 <p>这是框架</p>
+                
                 <Switch>
                     {/* {
                         MainRouters.map((route, key) => {
@@ -43,7 +44,7 @@ class Main extends Component {
                         })
                     } */}
 
-                <FrontendAuth config={config}></FrontendAuth>
+                <FrontendAuth config={MainRouters}></FrontendAuth>
                 </Switch>
             </div>
 
