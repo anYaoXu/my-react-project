@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Route,  Redirect, Switch } from "react-router-dom";
 import Routers from './Router';
 import './App.css';
+import FrontendAuth from './core/FrontendAuth';
+
 
 function App() {
 
@@ -10,7 +12,7 @@ function App() {
       {/* <Button type="primary">按钮</Button> */}
       <Router>
         <Switch>
-          {
+          {/* {
             Routers.map((route, key) => {
               return (
                 <Route key={key} path={route.path}
@@ -18,7 +20,8 @@ function App() {
               )
             })
           }
-          <Redirect from="/" to="/login" />
+          <Redirect from="/" to="/login" /> */}
+          <FrontendAuth config={Routers}></FrontendAuth>
         </Switch>
       </Router>
     </div>

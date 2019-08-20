@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Route, Switch } from "react-router-dom";
+import Routers from '../Router';
 import MainRouters from './MainRoute';
+import FrontendAuth from '../core/FrontendAuth';
 
 class Main extends Component {
     constructor(props) {
@@ -8,11 +10,14 @@ class Main extends Component {
         this.state = {};
     }
     render() {
+        // const config = {...Routers, ...MainRouters};
+        // const config = Object.assign({},Routers,MainRouters);
+        const config = [ ...MainRouters];
         return (
             <div>
                 <p>这是框架</p>
                 <Switch>
-                    {
+                    {/* {
                         MainRouters.map((route, key) => {
                             if (route.exact) {
                                 return (
@@ -36,8 +41,9 @@ class Main extends Component {
 
                             }
                         })
-                    }
+                    } */}
 
+                <FrontendAuth config={config}></FrontendAuth>
                 </Switch>
             </div>
 

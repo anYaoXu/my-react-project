@@ -4,11 +4,12 @@ import Main from './main/Main';
 const RoutersConfig =[
     {
         path:'/login',
-        component:Login,
+        component:Login,        
     },
     {
         path:'/main', 
         component:Main,
+        auth: true
     }
 ];
 export default RoutersConfig;
