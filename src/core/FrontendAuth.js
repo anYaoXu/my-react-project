@@ -15,10 +15,24 @@ class FrontendAuth extends Component {
                     con =  c;
                 }})
             }else{
+                // debugger;
                 if(v.path === pathname){
-                    con =  v;
+                    if(v.redirect){
+                        // this.getRouter(v.redirect, config)
+                        con = config.find( a => a.path === v.redirect);
+                        return;
+                    }else{
+                        con =  v;
+                    }
                 }else if(pathname.indexOf(v.path) > -1){
-                    con =  v;
+                    if(v.redirect){
+                        // this.getRouter(v.redirect, config);
+                        con = config.find( a => a.path === v.redirect);
+                        return;
+                    }else{
+                        con =  v;
+                    }
+                    // con =  v;
                 };
             }
         })
@@ -32,14 +46,14 @@ class FrontendAuth extends Component {
         if((!targetRouterConfig) || (targetRouterConfig && targetRouterConfig.auth && !isLogin)){
             return <Redirect to='/login' />
         }else{
-            const {component,exact,children} = targetRouterConfig;
+            const {path,component,exact,children} = targetRouterConfig;
             if(exact){
-                return <Route exact path={pathname} component={component} />
+                return <Route exact path={path} component={component} />
             }else if(children){
-                return <Route exact path={pathname} 
+                return <Route exact path={path} 
                         component={component} />
             }else{
-                return <Route path={pathname} component={component} />
+                return <Route path={path} component={component} />
             }
             
         }      

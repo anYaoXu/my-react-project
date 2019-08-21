@@ -9,13 +9,9 @@ class Home extends Component {
     render() {
         return (
             <div>
-                <Link to='/main/home/home1'>home1</Link><br/>
-                <Link to='/main/home/home2'>home2</Link><br/>
-                
-                <NavLink to="/main/home/home2" activeClassName="selected">FAQs</NavLink>
-                <p>这是home</p>
+                <p>这是home-page</p>
             </div>
-        );
+        );  
     }
 }
 

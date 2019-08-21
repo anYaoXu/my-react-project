@@ -9,7 +9,7 @@ const RoutersConfig =[
     {
         path:'/main', 
         component:Main,
-        auth: true
+        auth: true,
     }
 ];
 export default RoutersConfig;
