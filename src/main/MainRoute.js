@@ -1,37 +1,25 @@
 
 import Home from './home/Home';
-import baseConfig from './baseConfig/baseConfig';
+import BaseConfig from './baseConfig/BaseConfig';
 import HomeRouter from './home/HomeRouter';
-
-import Home1 from './home/Home1';
-import Home2 from './home/Home2';
 
 
 const MainRouters = [
     {
         path: '/main',
-        exact: false,
+        exact: true,
         title: '首页',
         component: Home,
-        routes: [
-            {
-                path: '/main/home/home1',
-                component: Home1,
-                title: 'home1'
-            },
-            {
-                path: '/main/home/home2',
-                component: Home2,
-                title: 'home2'
-            }
-        ]
+        childrenRouterName:'HomeRouter',
+        isnot: true
     },
     {
         path: '/main/baseC',
-        component: baseConfig,
+        component: BaseConfig,
         exact: true,
         title: '基础设置',
     }
+    
 ]
 
 export default MainRouters

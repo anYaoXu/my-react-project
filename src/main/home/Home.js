@@ -1,17 +1,17 @@
-import React, {Component} from 'react';
-import { Link,NavLink } from "react-router-dom";
+import React, { Component } from 'react';
 
 class Home extends Component {
     constructor(props) {
         super(props);
-        this.state = {  };
+        this.state = {};
     }
+
     render() {
         return (
             <div>
-                <p>这是home-page</p>
+                这是homePage
             </div>
-        );  
+        );
     }
 }
 

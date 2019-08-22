@@ -21,7 +21,8 @@ function App() {
             })
           }
           {/* <FrontendAuth config={Routers}></FrontendAuth> */}
-          <Redirect from="/" to="/login" /> */}
+
+          {/* <Redirect from="/" to="/login" /> */} */}
         </Switch>
       </Router>
     </div>

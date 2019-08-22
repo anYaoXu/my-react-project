@@ -7,6 +7,9 @@ import PrivateRoute from '../core/PrivateRoute';
 import './Main.less';
 import { Link, NavLink, Redirect } from "react-router-dom";
 import Home1 from './home/Home1'
+import Menu from '../components/Menu';
+import HomeRouter from './home/HomeRouter';
+import BaseConfig from './baseConfig/BaseConfig';
 
 
 class Main extends Component {
@@ -16,83 +19,49 @@ class Main extends Component {
             r_children: []
         };
     }
-    routeClick = (route, type) => {
+    routeClick = (route) => {
         this.props.history.push(route.path);
-        if (type === 'nav') {
-            if (route.routes) {
-                this.setState({
-                    r_children: route.routes
-                })
-            } else {
-                this.setState({
-                    r_children: []
-                })
-            }
-        }
     }
     render() {
+        const currentRouteConfig = HomeRouter;
         return (
             <div id="main-warp">
-                <div className="header"></div>
+                <div className="header">11111</div>
                 <div className="nav">
                     {
                         MainRouters.map((r, key) => {
                             if (r.title) {
                                 return (
-                                    <span key={key} onClick={this.routeClick.bind(this, r, 'nav')} > {r.title}</span>
+                                    // <span key={key} onClick={this.routeClick.bind(this, r)} > {r.title}</span>
+
+                                    <NavLink key={key} to={r.path} activeClassName="selected">{r.title}</NavLink>
+
                                 )
                             }
                         })
                     }
                 </div>
                 <div className="content">
-                    <div className="menu">
+                    <Menu routers={currentRouteConfig} history={this.props.history}></Menu>
+                    <div className="content-box">
                         {
-                            this.state.r_children.map((child, key) => {
+                            MainRouters.map((route1, key1) => {
+                                if(!route1.isnot){
+                                    return (
+                                        <Route key={key1} exact path={route1.path} component={route1.component} />
+                                    )
+                                }
+                            }) 
+                        }
+                        {/* <Route path="/main/baseC" component={BaseConfig}/> */}
+                        {
+                            
+                            currentRouteConfig.map((route, key) => {
                                 return (
-                                    <span key={key} onClick={this.routeClick.bind(this, child, 'menu')}>{child.title}</span>
+                                    <Route key={key} exact path={route.path} component={route.component} />
                                 )
                             })
                         }
-                    </div>
-                    <div className="content-box">
-                        {/* <Switch> */}
-                            {/* <FrontendAuth config={MainRouters}></FrontendAuth> */}
-                            {/* {
-                                MainRouters.map((route, key) => {
-                                    if (route.exact) {
-                                        return (
-                                            <Route
-                                                key={key}
-                                                exact
-                                                path={route.path}
-                                                render={props => (
-                                                    <route.component {...props} routes={route.routes} />
-                                                )}
-                                            />
-                                        )
-                                    } else {
-                                        return (
-                                            <Route key={key} path={route.path}
-                                                render={props => (
-                                                    <route.component {...props} routes={route.routes} />
-                                                )}
-                                            />
-                                        )
-
-                                    }
-                                })
-                            } */}
-                        {/* </Switch> */}
-                        {
-                            MainRouters.map((route, key) => {
-                                return (
-                                        <Route key={key} path={route.path} component={route.component}/>
-                                    )
-                                })
-                        }
-                        <Route path='/main/home/home1' component={Home1}/>
-                        
                     </div>
                 </div>
             </div>
