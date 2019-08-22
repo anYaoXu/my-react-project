@@ -25,11 +25,13 @@ const HomeRouter =[
         routers:[
             {
                path:'/main/home/home3',
-               component: Home4
+               component: Home4,
+               title:'Home4'
             },
             {
                 path:'/main/home/home4',
-                component: Home5
+                component: Home5,
+                title:'Home5'
             }
         ]
     }

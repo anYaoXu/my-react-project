@@ -24,12 +24,20 @@ class Menu extends Component {
                     this.props.routers.map((child, key) => {
                         if (child.title) {       
                             if(child.routers){
-                                // {
-                                //     this.returnP(child.routers);
-                                // }
-                                return (
-                                    <p>{child.title}</p>
-                                    // {this.returnP(child)}
+                                const item = child.routers.map((c,key)=>{
+                                    return (
+                                        <div key={key}>
+                                            
+                                            <p>{child.title}-{c.title}</p>
+                                            <span onClick={this.routeClick.bind(this, c)}>{c.title}</span>
+                                        </div>
+                                    )
+                                })
+                                return(
+                                    <div key={key}>
+                                        {item}
+                                    </div>
+                                    
                                 )
                                 // child.routers.map((c,key)=>{
                                 //     return (
