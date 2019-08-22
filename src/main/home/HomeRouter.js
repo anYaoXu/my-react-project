@@ -24,12 +24,12 @@ const HomeRouter =[
         title:'组',
         routers:[
             {
-               path:'/main/home/home3',
+               path:'/main/home/home4',
                component: Home4,
                title:'Home4'
             },
             {
-                path:'/main/home/home4',
+                path:'/main/home/home5',
                 component: Home5,
                 title:'Home5'
             }

@@ -35,6 +35,9 @@ class Login extends Component {
             logintype: 1,
             countrycode:'+86 中国大陆'
         }
+        
+        this.props.history.push('/main');
+        return;
         const url='http://192.168.100.149:8060/uk-bsc/v1/login';
         axiosService.postAxios(url, param).then((res)=>{
             if(res.code === 200){
@@ -46,7 +49,11 @@ class Login extends Component {
                 console.log('code != 200')
             }
         }).catch(err=>{
-            message.error(err.msg)
+            if(err.msg){
+                message.error(err.msg)
+            }else{
+                message.error('服务器错误');
+            }
         })
     }
     showLoginBox = (type) => {

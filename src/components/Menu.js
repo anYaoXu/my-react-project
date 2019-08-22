@@ -28,13 +28,14 @@ class Menu extends Component {
                                     return (
                                         <div key={key}>
                                             
-                                            <p>{child.title}-{c.title}</p>
                                             <span onClick={this.routeClick.bind(this, c)}>{c.title}</span>
                                         </div>
                                     )
                                 })
                                 return(
                                     <div key={key}>
+                                    
+                                    <p>{child.title}</p>
                                         {item}
                                     </div>
                                     

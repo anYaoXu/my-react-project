@@ -7,6 +7,8 @@ import PrivateRoute from '../core/PrivateRoute';
 import './Main.less';
 import { Link, NavLink, Redirect } from "react-router-dom";
 import Home1 from './home/Home1'
+import Home4 from './home/Home4'
+import Home5 from './home/Home5'
 import Menu from '../components/Menu';
 import HomeRouter from './home/HomeRouter';
 import BaseConfig from './baseConfig/BaseConfig';
@@ -53,13 +55,28 @@ class Main extends Component {
                                 }
                             }) 
                         }
-                        {/* <Route path="/main/baseC" component={BaseConfig}/> */}
+                        {/* <Route path="/main/home/home4" component={Home4}/> */}
                         {
                             
                             currentRouteConfig.map((route, key) => {
-                                return (
-                                    <Route key={key} exact path={route.path} component={route.component} />
-                                )
+                                if(route.routers){
+                                    // debugger;
+                                    const item = route.routers.map( (c,key) =>{
+                                        return (
+                                            <Route key={key} exact path={c.path} component={c.component} />
+                                        )
+                                    })
+                                    return(
+                                        <div key={key}>
+                                        {item}
+                                        </div>
+                                    )
+                                }else{
+                                    return (
+                                        <Route key={key} exact path={route.path} component={route.component} />
+                                    )
+
+                                }
                             })
                         }
                     </div>
