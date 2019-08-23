@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import Menu from '../../components/Menu';
 
-class BaseConfig extends Component {
+class BaseConfig1 extends Component {
     constructor(props) {
         super(props);
         this.state = {  };
@@ -9,10 +9,10 @@ class BaseConfig extends Component {
     render() {
         return (
             <div className="baseC-wrap">
-                这是 基础配置 page
+                这是 基础配置 page1
             </div>
         );
     }
 }
 
-export default BaseConfig;
+export default BaseConfig1;
