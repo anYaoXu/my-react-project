@@ -9,10 +9,14 @@ import { Link, NavLink, Redirect } from "react-router-dom";
 // import Home1 from './home/Home1';
 // import Home4 from './home/Home4';
 // import Home5 from './home/Home5';
-import Menu from '../components/Menu';
+import Menus from '../components/Menus';
 import HomeRouter from './home/HomeRouter';
 import BaseConfig1 from './baseConfig/BaseConfig1';
 import BaseCRouters from './baseConfig/BaseCRouter';
+
+import { Menu, Icon } from 'antd';
+
+const { SubMenu } = Menu;
 
 
 class Main extends Component {
@@ -31,13 +35,12 @@ class Main extends Component {
     }
     render() {
         // const currentRouteConfig = this.state.r_children;
-
         // import currentRouteConfig from ''
         // debugger;
 
         let currentRouteConfig = HomeRouter;
 
-       
+
         // const path = this.state.r_children;
 
         // const as = () => import router from path;
@@ -49,29 +52,34 @@ class Main extends Component {
 
         if (this.state.r_children === 'HomeRouter') {
             currentRouteConfig = HomeRouter;
-        } else if(this.state.r_children === 'BaseCRouter'){
+        } else if (this.state.r_children === 'BaseCRouter') {
             currentRouteConfig = BaseCRouters;
         }
+
+        const menuList = MainRouters.map((nav, key) => {
+            if (nav.title) {
+                return (
+                    <Menu.Item key={key}>
+                        <span onClick={this.routeClick.bind(this, nav)}>
+                        {nav.title}
+                        </span>
+                    </Menu.Item>
+                )
+            }
+        })
 
         return (
             <div id="main-warp">
                 <div className="header"></div>
                 <div className="nav">
-                    {
-                        MainRouters.map((r, key) => {
-                            if (r.title) {
-                                return (
-                                    <span key={key} onClick={this.routeClick.bind(this, r)} > {r.title}</span>
-
-                                    // <NavLink key={key} to={r.path} activeClassName="selected">{r.title}</NavLink>
-
-                              )
-                            }
-                        })
-                    }
+                    <Menu mode="horizontal">
+                        {
+                            menuList
+                        }
+                    </Menu>
                 </div>
                 <div className="content">
-                    <Menu routers={currentRouteConfig} history={this.props.history}></Menu>
+                    <Menus routers={currentRouteConfig} history={this.props.history}></Menus>
                     <div className="content-box">
                         {
                             MainRouters.map((route1, key1) => {

@@ -13,8 +13,8 @@ class Login extends Component {
         super(props);
         this.state = {
             loginType: 2,
-            userName:'',
-            password:''
+            userName: '',
+            password: ''
         };
         // this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -25,33 +25,33 @@ class Login extends Component {
         // console.log($.cookie('username',''));
         // console.log(cookie);
         // $.cookie('username','1234');
-        $.cookie('username','12345');
+        $.cookie('username', '12345');
         console.log($.cookie('username'));
         event.preventDefault();
         // return;
         const param = {
-            loginname:this.state.userName,
-            password:this.state.password,
+            loginname: this.state.userName,
+            password: this.state.password,
             logintype: 1,
-            countrycode:'+86 中国大陆'
+            countrycode: '+86 中国大陆'
         }
-        
+
         this.props.history.push('/main');
         return;
-        const url='http://192.168.100.149:8060/uk-bsc/v1/login';
-        axiosService.postAxios(url, param).then((res)=>{
-            if(res.code === 200){
-                UtilService.saveLoginInfo(res.data.user,()=>{
+        const url = 'http://192.168.100.149:8060/uk-bsc/v1/login';
+        axiosService.postAxios(url, param).then((res) => {
+            if (res.code === 200) {
+                UtilService.saveLoginInfo(res.data.user, () => {
                     console.log('callback');
                     this.props.history.push('/main');
                 });
-            }else{
+            } else {
                 console.log('code != 200')
             }
-        }).catch(err=>{
-            if(err.msg){
+        }).catch(err => {
+            if (err.msg) {
                 message.error(err.msg)
-            }else{
+            } else {
                 message.error('服务器错误');
             }
         })
@@ -62,16 +62,16 @@ class Login extends Component {
             loginType: type
         })
     }
-    userNameChange = (event)=>{
+    userNameChange = (event) => {
         this.setState({
-            userName:event.target.value
+            userName: event.target.value
         })
     }
-    pwdChange = (event)=>{
+    pwdChange = (event) => {
         this.setState({
-            password:event.target.value
+            password: event.target.value
         })
-    } 
+    }
     render() {
         const type = this.state.loginType;
         let lognBox;
@@ -82,7 +82,7 @@ class Login extends Component {
                         <Input prefix={<Icon type="user" style={{ color: 'rgba(244,121,131)' }} />} placeholder="请输入用户名" value={this.state.userName} onChange={this.userNameChange} />
                     </Form.Item>
                     <Form.Item>
-                        <Input prefix={<Icon type="lock" theme="filled" style={{ color: 'rgba(244,121,131)' }} />} placeholder="请输入密码" type="password"  value={this.state.password} onChange={this.pwdChange}/>
+                        <Input prefix={<Icon type="lock" theme="filled" style={{ color: 'rgba(244,121,131)' }} />} placeholder="请输入密码" type="password" value={this.state.password} onChange={this.pwdChange} />
                     </Form.Item>
                     <Form.Item>
                         <Checkbox>记住我</Checkbox>
@@ -92,7 +92,7 @@ class Login extends Component {
                     </Form.Item>
                 </Form>
             )
-        }else{
+        } else {
             lognBox = (
                 <p>2222222222222</p>
             )
@@ -106,8 +106,8 @@ class Login extends Component {
                     <div className="right">
                         <div className="form-box">
                             <div className="form-header">
-                                <div className={`login-left ${this.state.loginType === 1?'active':null}`} onClick={this.showLoginBox.bind(this, 1)}>扫码登录</div>
-                                <div className={`login-right ${this.state.loginType === 2?'active':null}`} onClick={this.showLoginBox.bind(this, 2)}>账号登录</div>
+                                <div className={`login-left ${this.state.loginType === 1 ? 'active' : null}`} onClick={this.showLoginBox.bind(this, 1)}>扫码登录</div>
+                                <div className={`login-right ${this.state.loginType === 2 ? 'active' : null}`} onClick={this.showLoginBox.bind(this, 2)}>账号登录</div>
                             </div>
 
                             {lognBox}
